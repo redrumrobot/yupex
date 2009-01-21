@@ -730,7 +730,6 @@ endif
 ifneq ($(BUILD_GAME_SO),0)
   TARGETS += \
     $(B)/base/cgame$(ARCH).$(SHLIBEXT) \
-    $(B)/base/game$(ARCH).$(SHLIBEXT) \
     $(B)/base/ui$(ARCH).$(SHLIBEXT)
 endif
 
@@ -738,7 +737,6 @@ ifneq ($(BUILD_GAME_QVM),0)
   ifneq ($(CROSS_COMPILING),1)
     TARGETS += \
       $(B)/base/vm/cgame.qvm \
-      $(B)/base/vm/game.qvm \
       $(B)/base/vm/ui.qvm \
       qvmdeps
   endif
@@ -1475,8 +1473,8 @@ clean: clean-debug clean-release
 clean2:
 	if [ -d $(B) ];then (find $(B) -name '*.d' -exec rm {} \;)fi
 	rm -f $(Q3OBJ) $(Q3POBJ) $(Q3POBJ_SMP) $(Q3DOBJ) \
-		$(GOBJ) $(CGOBJ) $(UIOBJ) \
-		$(GVMOBJ) $(CGVMOBJ) $(UIVMOBJ)
+		$(CGOBJ) $(UIOBJ) \
+		$(CGVMOBJ) $(UIVMOBJ)
 	rm -f $(TARGETS)
 
 clean-debug:
@@ -1507,7 +1505,7 @@ dist:
 
 D_FILES=$(shell find . -name '*.d')
 
-$(B)/base/vm/vm.d: $(GOBJ) $(CGOBJ) $(UIOBJ)
+$(B)/base/vm/vm.d: $(CGOBJ) $(UIOBJ)
 	cat $(^:%.o=%.d) | sed -e 's/\.o/\.asm/g' > $@
 
 qvmdeps: $(B)/base/vm/vm.d
