@@ -199,7 +199,7 @@ typedef enum {
   G_ENTITY_CONTACT, // ( const vec3_t mins, const vec3_t maxs, const gentity_t *ent );
   // perform an exact check against inline brush models of non-square shape
 
-  G_GET_USERCMD,  // ( int clientNum, usercmd_t *cmd )
+  G_GET_USERCMD=36,  // ( int clientNum, usercmd_t *cmd )
 
   G_GET_ENTITY_TOKEN, // qboolean ( char *buffer, int bufferSize )
   // Retrieves the next string token from the entity spawn text, returning
@@ -207,7 +207,7 @@ typedef enum {
   // This should only be done at GAME_INIT time.
 
   G_FS_GETFILELIST,
-  G_REAL_TIME,
+  G_REAL_TIME=41,
   G_SNAPVECTOR,
 
   G_TRACECAPSULE, // ( trace_t *results, const vec3_t start, const vec3_t mins, const vec3_t maxs, const vec3_t end, int passEntityNum, int contentmask );
@@ -216,13 +216,13 @@ typedef enum {
   // 1.32
   G_FS_SEEK,
 
+  G_SEND_GAMESTAT,
+
   G_PARSE_ADD_GLOBAL_DEFINE,
   G_PARSE_LOAD_SOURCE,
   G_PARSE_FREE_SOURCE,
   G_PARSE_READ_TOKEN,
-  G_PARSE_SOURCE_FILE_AND_LINE,
-
-  G_SEND_GAMESTAT
+  G_PARSE_SOURCE_FILE_AND_LINE
 } gameImport_t;
 
 
