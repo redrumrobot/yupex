@@ -21,23 +21,16 @@ ifndef BUILD_STANDALONE
   BUILD_STANDALONE =
 endif
 ifndef BUILD_CLIENT
-  BUILD_CLIENT     =
+  BUILD_CLIENT     = 1
 endif
 ifndef BUILD_CLIENT_SMP
-  BUILD_CLIENT_SMP =
+  BUILD_CLIENT_SMP = 1
 endif
 ifndef BUILD_SERVER
-  BUILD_SERVER     =
+  BUILD_SERVER     = 1
 endif
-ifndef BUILD_GAME_SO
-  BUILD_GAME_SO    =
-endif
-ifndef BUILD_GAME_QVM
-  BUILD_GAME_QVM   =
-endif
-ifndef BUILD_MISSIONPACK
-  BUILD_MISSIONPACK=
-endif
+BUILD_GAME_SO      = 0
+BUILD_GAME_QVM     = 0
 
 ifneq ($(PLATFORM),darwin)
   BUILD_CLIENT_SMP = 0
@@ -143,10 +136,6 @@ ifndef USE_LOCAL_HEADERS
 USE_LOCAL_HEADERS=1
 endif
 
-ifndef BUILD_MASTER_SERVER
-BUILD_MASTER_SERVER=0
-endif
-
 #############################################################################
 
 BD=$(BUILD_DIR)/debug-$(PLATFORM)-$(ARCH)
@@ -171,7 +160,6 @@ Q3LCCETCDIR=$(MOUNT_DIR)/tools/lcc/etc
 Q3LCCSRCDIR=$(MOUNT_DIR)/tools/lcc/src
 SDLHDIR=$(MOUNT_DIR)/SDL12
 LIBSDIR=$(MOUNT_DIR)/libs
-MASTERDIR=$(MOUNT_DIR)/master
 TEMPDIR=/tmp
 
 # set PKG_CONFIG_PATH to influence this, e.g.
@@ -906,16 +894,10 @@ all: debug release
 debug:
 	@$(MAKE) targets B=$(BD) CFLAGS="$(CFLAGS) $(DEPEND_CFLAGS) \
 		$(DEBUG_CFLAGS)" V=$(V)
-ifeq ($(BUILD_MASTER_SERVER),1)
-	$(MAKE) -C $(MASTERDIR) debug
-endif
 
 release:
 	@$(MAKE) targets B=$(BR) CFLAGS="$(CFLAGS) $(DEPEND_CFLAGS) \
 		$(RELEASE_CFLAGS)" V=$(V)
-ifeq ($(BUILD_MASTER_SERVER),1)
-	$(MAKE) -C $(MASTERDIR) release
-endif
 
 # Create the build directories, check libraries and print out
 # an informational message, then start building
@@ -1697,7 +1679,6 @@ TOOLSOBJ = $(LBURGOBJ) $(Q3CPPOBJ) $(Q3RCCOBJ) $(Q3LCCOBJ) $(Q3ASMOBJ)
 
 
 clean: clean-debug clean-release
-	@$(MAKE) -C $(MASTERDIR) clean
 
 clean-debug:
 	@$(MAKE) clean2 B=$(BD)
