@@ -600,7 +600,6 @@ makedirs:
 	@if [ ! -d $(B) ];then $(MKDIR) $(B);fi
 	@if [ ! -d $(B)/base ];then $(MKDIR) $(B)/base;fi
 	@if [ ! -d $(B)/base/cgame ];then $(MKDIR) $(B)/base/cgame;fi
-	@if [ ! -d $(B)/base/game ];then $(MKDIR) $(B)/base/game;fi
 	@if [ ! -d $(B)/base/ui ];then $(MKDIR) $(B)/base/ui;fi
 	@if [ ! -d $(B)/base/qcommon ];then $(MKDIR) $(B)/base/qcommon;fi
 	@if [ ! -d $(B)/base/vm ];then $(MKDIR) $(B)/base/vm;fi
@@ -670,52 +669,6 @@ $(B)/base/vm/cgame.qvm: $(CGVMOBJ) $(CGDIR)/cg_syscalls.asm
 	$(Q3ASM) -o $@ $(CGVMOBJ) $(CGDIR)/cg_syscalls.asm
 
 
-
-#############################################################################
-## TREMULOUS GAME
-#############################################################################
-
-GOBJ_ = \
-  $(B)/base/game/g_main.o \
-  $(B)/base/game/bg_misc.o \
-  $(B)/base/game/bg_pmove.o \
-  $(B)/base/game/bg_slidemove.o \
-  $(B)/base/game/g_mem.o \
-  $(B)/base/game/g_active.o \
-  $(B)/base/game/g_client.o \
-  $(B)/base/game/g_cmds.o \
-  $(B)/base/game/g_combat.o \
-  $(B)/base/game/g_physics.o \
-  $(B)/base/game/g_buildable.o \
-  $(B)/base/game/g_misc.o \
-  $(B)/base/game/g_missile.o \
-  $(B)/base/game/g_mover.o \
-  $(B)/base/game/g_session.o \
-  $(B)/base/game/g_spawn.o \
-  $(B)/base/game/g_svcmds.o \
-  $(B)/base/game/g_target.o \
-  $(B)/base/game/g_team.o \
-  $(B)/base/game/g_trigger.o \
-  $(B)/base/game/g_utils.o \
-  $(B)/base/game/g_maprotation.o \
-  $(B)/base/game/g_ptr.o \
-  $(B)/base/game/g_weapon.o \
-  $(B)/base/game/g_admin.o \
-  \
-  $(B)/base/qcommon/q_math.o \
-  $(B)/base/qcommon/q_shared.o
-
-GOBJ = $(GOBJ_) $(B)/base/game/g_syscalls.o
-GVMOBJ = $(GOBJ_:%.o=%.asm) $(B)/base/game/bg_lib.asm
-
-$(B)/base/game$(ARCH).$(SHLIBEXT) : $(GOBJ)
-	$(CC) $(SHLIBLDFLAGS) -o $@ $(GOBJ)
-
-$(B)/base/vm/game.qvm: $(GVMOBJ) $(GDIR)/g_syscalls.asm
-	$(Q3ASM) -o $@ $(GVMOBJ) $(GDIR)/g_syscalls.asm
-
-
-
 #############################################################################
 ## TREMULOUS UI
 #############################################################################
@@ -751,20 +704,17 @@ $(B)/base/cgame/%.o: $(CGDIR)/%.c
 $(B)/base/cgame/%.asm: $(CGDIR)/%.c
 	$(DO_Q3LCC)
 
-
 $(B)/base/game/%.o: $(GDIR)/%.c
 	$(DO_SHLIB_CC)
 
 $(B)/base/game/%.asm: $(GDIR)/%.c
 	$(DO_Q3LCC)
 
-
 $(B)/base/ui/%.o: $(UIDIR)/%.c
 	$(DO_SHLIB_CC)
 
 $(B)/base/ui/%.asm: $(UIDIR)/%.c
 	$(DO_Q3LCC)
-
 
 $(B)/base/qcommon/%.o: $(CMDIR)/%.c
 	$(DO_SHLIB_CC)
