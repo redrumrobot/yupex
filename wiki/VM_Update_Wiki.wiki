@@ -1,0 +1,8 @@
+=Bug fixes=
+
+  * None yet
+
+
+=Added features=
+
+  * cg_chatBalloon 0|1 - Display a chat balloon over the head of a player that is typing
