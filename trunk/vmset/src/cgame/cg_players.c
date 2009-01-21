@@ -1736,11 +1736,11 @@ static void CG_PlayerSprites( centity_t *cent )
     return;
   }
 
-  if( cent->currentState.eFlags & EF_TALK )
+  if( cent->currentState.eFlags & EF_TALK && cg_chatBalloon.integer )
   {
     // the masses have decreed this to be wrong
-/*    CG_PlayerFloatSprite( cent, cgs.media.balloonShader );
-    return;*/
+    CG_PlayerFloatSprite( cent, cgs.media.balloonShader );
+    return;
   }
 }
 

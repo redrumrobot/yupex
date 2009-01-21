@@ -1506,6 +1506,10 @@ extern  vmCvar_t    cg_debugRandom;
 extern  vmCvar_t    cg_optimizePrediction;
 extern  vmCvar_t    cg_projectileNudge;
 
+// Mercury modified/added cvars...
+extern  vmCvar_t    cg_chatBalloon;
+
+
 //
 // cg_main.c
 //

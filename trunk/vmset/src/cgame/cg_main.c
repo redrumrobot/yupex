@@ -239,6 +239,9 @@ vmCvar_t  cg_debugRandom;
 vmCvar_t  cg_optimizePrediction;
 vmCvar_t  cg_projectileNudge;
 
+// Mercury modified/added cvars...
+vmCvar_t  cg_chatBalloon;
+
 
 typedef struct
 {
@@ -354,6 +357,8 @@ static cvarTable_t cvarTable[ ] =
   
   { &cg_optimizePrediction, "cg_optimizePrediction", "1", CVAR_ARCHIVE },
   { &cg_projectileNudge, "cg_projectileNudge", "1", CVAR_ARCHIVE },
+  { &cg_chatBalloon, "cg_chatBalloon", "0", CVAR_ARCHIVE },
+
 
   // the following variables are created in other parts of the system,
   // but we also reference them here
