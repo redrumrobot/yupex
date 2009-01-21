@@ -21,9 +21,9 @@ else
   COMPILE_ARCH=$(shell uname -m | sed -e s/i.86/x86/)
 endif
 
-BUILD_CLIENT     =
-BUILD_CLIENT_SMP =
-BUILD_SERVER     =
+BUILD_CLIENT     = 0
+BUILD_CLIENT_SMP = 0
+BUILD_SERVER     = 0
 BUILD_GAME_SO    =
 BUILD_GAME_QVM   =
 
@@ -115,10 +115,6 @@ ifndef USE_LOCAL_HEADERS
 USE_LOCAL_HEADERS=1
 endif
 
-ifndef BUILD_MASTER_SERVER
-BUILD_MASTER_SERVER=0
-endif
-
 #############################################################################
 
 BD=$(BUILD_DIR)/debug-$(PLATFORM)-$(ARCH)
@@ -138,7 +134,6 @@ TOOLSDIR=$(MOUNT_DIR)/tools
 LOKISETUPDIR=$(UDIR)/setup
 SDLHDIR=$(MOUNT_DIR)/SDL12
 LIBSDIR=$(MOUNT_DIR)/libs
-MASTERDIR=$(MOUNT_DIR)/master
 
 # extract version info
 VERSION=$(shell grep "\#define VERSION_NUMBER" $(CMDIR)/q_shared.h | \
@@ -793,16 +788,10 @@ release: build_release
 build_debug: B=$(BD)
 build_debug: makedirs tools
 	$(MAKE) targets B=$(BD) CFLAGS="$(CFLAGS) $(DEBUG_CFLAGS) $(DEPEND_CFLAGS)"
-ifeq ($(BUILD_MASTER_SERVER),1)
-	$(MAKE) -C $(MASTERDIR) debug
-endif
 
 build_release: B=$(BR)
 build_release: makedirs tools
 	$(MAKE) targets B=$(BR) CFLAGS="$(CFLAGS) $(RELEASE_CFLAGS) $(DEPEND_CFLAGS)"
-ifeq ($(BUILD_MASTER_SERVER),1)
-	$(MAKE) -C $(MASTERDIR) release
-endif
 
 #Build both debug and release builds
 all:build_debug build_release
@@ -1482,7 +1471,6 @@ $(B)/base/qcommon/%.asm: $(CMDIR)/%.c
 #############################################################################
 
 clean: clean-debug clean-release
-	$(MAKE) -C $(MASTERDIR) clean
 
 clean2:
 	if [ -d $(B) ];then (find $(B) -name '*.d' -exec rm {} \;)fi
