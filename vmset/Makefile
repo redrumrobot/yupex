@@ -669,6 +669,30 @@ $(B)/base/vm/cgame.qvm: $(CGVMOBJ) $(CGDIR)/cg_syscalls.asm
 	$(Q3ASM) -o $@ $(CGVMOBJ) $(CGDIR)/cg_syscalls.asm
 
 
+
+#############################################################################
+## TREMULOUS GAME
+#############################################################################
+
+GOBJ_ = \
+  $(B)/base/game/bg_misc.o \
+  $(B)/base/game/bg_pmove.o \
+  $(B)/base/game/bg_slidemove.o \
+  \
+  $(B)/base/qcommon/q_math.o \
+  $(B)/base/qcommon/q_shared.o
+
+GOBJ = $(GOBJ_) $(B)/base/game/g_syscalls.o
+GVMOBJ = $(GOBJ_:%.o=%.asm) $(B)/base/game/bg_lib.asm
+
+$(B)/base/game$(ARCH).$(SHLIBEXT) : $(GOBJ)
+	$(CC) $(SHLIBLDFLAGS) -o $@ $(GOBJ)
+
+$(B)/base/vm/game.qvm: $(GVMOBJ) $(GDIR)/g_syscalls.asm
+	$(Q3ASM) -o $@ $(GVMOBJ) $(GDIR)/g_syscalls.asm
+
+
+
 #############################################################################
 ## TREMULOUS UI
 #############################################################################
@@ -774,3 +798,4 @@ ifneq ($(strip $(D_FILES)),)
 endif
 
 .PHONY: release debug clean distclean copyfiles installer dist
+
