@@ -1,8 +1,28 @@
-=Bug fixes=
+=How to install=
 
-  * None yet
+ # Locate your base folder, it should be in the same directory as your client binary.
+ # Locate the file "*vms-1.1.0.pk3*" and rename it to "*backup*".
+ # Place the Yupex VM update in your base folder.
+ # Start tremulous, join a server, and you should be ready to use the Yupex VM update!
 
+=How to uninstall=
+
+ # Locate your base folder, it should be in the same directory as your client binary.
+ # Locate the file "*update-vms.pk3*" and delete it.
+ # Locate the file "*backup*" and rename it to "*vms-1.1.0.pk3*".
+ # Start tremulous, join a server, and your stock VM set should be loaded.
 
 =Added features=
 
-  * cg_chatBalloon 0|1 - Display a chat balloon over the head of a player that is typing
+ * Cvars
+  # *cg_chatBalloon* _0|1_ - Display a chat balloon over the head of a player that is typing
+  # *user_hp* - Displays the current health out of the max health
+  # *user_teamname* - Displays the team you are on
+  # *user_stage* - Displays your team's stage
+  # *user_credits* - Displays your current credits/evos
+  # *user_score* - Displays your score
+  # *user_attackername* - Displays the name of the last person that caused damage to you
+  # *user_crosshairrname* - Displays the name of the player in your crosshairs (teammate limited)
+
+ * Other
+  # Smooth mass driver zooming
