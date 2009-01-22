@@ -445,6 +445,55 @@ static void CG_ForceModelChange( void )
   }
 }
 
+/* 
+=============== 
+CG_SetPVars 
+ 
+Set the p_* cvars 
+=============== 
+*/ 
+static void CG_SetPVars( void ) 
+{ 
+  playerState_t *ps; 
+ 
+  if( !cg.snap ) 
+    return; 
+ 
+  ps = &cg.snap->ps; 
+ 
+  trap_Cvar_Set( "user_hp", va( "%d / %d", cg.snap->ps.stats[ STAT_HEALTH ], cg.snap->ps.stats[ STAT_MAX_HEALTH ] ) );
+  switch( cg.snap->ps.stats[ STAT_PTEAM ] )
+  { 
+  	case PTE_NONE:
+	trap_Cvar_Set( "user_teamname", "spectator" );
+	trap_Cvar_Set( "user_stage", "0" );
+	break;
+
+	case PTE_ALIENS:
+	trap_Cvar_Set( "user_teamname", "alien" );
+	trap_Cvar_Set( "user_stage", va( "%d", cgs.alienStage ) );
+	break;
+
+	case PTE_HUMANS:
+	trap_Cvar_Set( "user_teamname", "human" );
+	trap_Cvar_Set( "user_stage", va( "%d", cgs.humanStage ) );
+	break;
+
+	}
+  trap_Cvar_Set( "user_credits", va( "%d", cg.snap->ps.persistant[ PERS_CREDIT ] ) );
+  trap_Cvar_Set( "user_score", va( "%d", cg.snap->ps.persistant[ PERS_SCORE ] ) );
+
+  if ( CG_LastAttacker( ) != -1 ) 
+    trap_Cvar_Set( "user_attackername", cgs.clientinfo[ CG_LastAttacker( ) ].name );
+  else
+    trap_Cvar_Set( "user_attackername", "" );
+
+  if ( CG_CrosshairPlayer( ) != -1 )
+    trap_Cvar_Set( "user_crosshairrname", cgs.clientinfo[ CG_CrosshairPlayer( ) ].name );
+  else
+    trap_Cvar_Set( "user_crosshairrname", "" );
+
+}
 
 /*
 =================
@@ -455,6 +504,8 @@ void CG_UpdateCvars( void )
 {
   int         i;
   cvarTable_t *cv;
+
+  CG_SetPVars( );
 
   for( i = 0, cv = cvarTable; i < cvarTableSize; i++, cv++ )
     trap_Cvar_Update( cv->vmCvar );
