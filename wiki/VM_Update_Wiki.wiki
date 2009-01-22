@@ -1,8 +1,9 @@
 =How to install=
 
+ # Download "*update-vms.pk3*" from the download tab
  # Locate your base folder, it should be in the same directory as your client binary.
  # Locate the file "*vms-1.1.0.pk3*" and rename it to "*backup*".
- # Place the Yupex VM update in your base folder.
+ # Place the Yupex VM update ("*update-vms.pk3*") in your base folder.
  # Start tremulous, join a server, and you should be ready to use the Yupex VM update!
 
 =How to uninstall=
