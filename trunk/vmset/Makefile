@@ -600,6 +600,7 @@ makedirs:
 	@if [ ! -d $(B) ];then $(MKDIR) $(B);fi
 	@if [ ! -d $(B)/base ];then $(MKDIR) $(B)/base;fi
 	@if [ ! -d $(B)/base/cgame ];then $(MKDIR) $(B)/base/cgame;fi
+	@if [ ! -d $(B)/base/game ];then $(MKDIR) $(B)/base/game;fi
 	@if [ ! -d $(B)/base/ui ];then $(MKDIR) $(B)/base/ui;fi
 	@if [ ! -d $(B)/base/qcommon ];then $(MKDIR) $(B)/base/qcommon;fi
 	@if [ ! -d $(B)/base/vm ];then $(MKDIR) $(B)/base/vm;fi
