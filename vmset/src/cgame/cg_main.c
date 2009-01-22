@@ -489,9 +489,9 @@ static void CG_SetPVars( void )
     trap_Cvar_Set( "user_attackername", "" );
 
   if ( CG_CrosshairPlayer( ) != -1 )
-    trap_Cvar_Set( "user_crosshairrname", cgs.clientinfo[ CG_CrosshairPlayer( ) ].name );
+    trap_Cvar_Set( "user_crosshairname", cgs.clientinfo[ CG_CrosshairPlayer( ) ].name );
   else
-    trap_Cvar_Set( "user_crosshairrname", "" );
+    trap_Cvar_Set( "user_crosshairname", "" );
 
 }
 
