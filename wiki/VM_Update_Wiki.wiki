@@ -1,15 +1,15 @@
 =How to install=
 
- # Download "*update-vms.pk3*" from the download tab
+ # If you are using the stock client or TJW client download "*stock-update-vms.pk3*" from the download tab, else download "*update-vms.pk3*"
  # Locate your base folder, it should be in the same directory as your client binary.
  # Locate the file "*vms-1.1.0.pk3*" and rename it to "*backup*".
- # Place the Yupex VM update ("*update-vms.pk3*") in your base folder.
+ # Place the Yupex VM update ("*update-vms.pk3*" / "*stock-update-vms.pk3*") in your base folder.
  # Start tremulous, join a server, and you should be ready to use the Yupex VM update!
 
 =How to uninstall=
 
  # Locate your base folder, it should be in the same directory as your client binary.
- # Locate the file "*update-vms.pk3*" and delete it.
+ # Locate the file "*stock-update-vms.pk3*" / "*update-vms.pk3*" and delete it.
  # Locate the file "*backup*" and rename it to "*vms-1.1.0.pk3*".
  # Start tremulous, join a server, and your stock VM set should be loaded.
 
