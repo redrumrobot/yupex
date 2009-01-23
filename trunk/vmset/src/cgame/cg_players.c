@@ -1699,6 +1699,10 @@ static void CG_PlayerFloatSprite( centity_t *cent, qhandle_t shader )
 {
   int           rf;
   refEntity_t   ent;
+  pClass_t      class = ( cent->currentState.powerups >> 8 ) & 0xFF;
+  vec3_t        maxs;
+
+  BG_FindBBoxForClass( class, NULL, maxs, NULL, NULL, NULL );
 
   if( cent->currentState.number == cg.snap->ps.clientNum && !cg.renderingThirdPerson )
     rf = RF_THIRD_PERSON;   // only show in mirrors
@@ -1707,7 +1711,7 @@ static void CG_PlayerFloatSprite( centity_t *cent, qhandle_t shader )
 
   memset( &ent, 0, sizeof( ent ) );
   VectorCopy( cent->lerpOrigin, ent.origin );
-  ent.origin[ 2 ] += 48;
+  ent.origin[ 2 ] += maxs[ 2 ] + 32;
   ent.reType = RT_SPRITE;
   ent.customShader = shader;
   ent.radius = 10;
