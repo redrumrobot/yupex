@@ -4,7 +4,7 @@ _This requires both the Yupex client and the Yupex VM update_
 {{{
 
 # Set the prefix, this is what will be displayed in front of the health
-set prefix "say_teaem ^1GTFO I HAVE ^6"
+set prefix "say_team ^1GTFO I HAVE ^6"
 # Set suffix, this is what will be displayed after the health
 set suffix "^1 HEALTH!"
 # Set a "buffer" vstr to hold what we will be displaying
