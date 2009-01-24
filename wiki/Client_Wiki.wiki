@@ -1,13 +1,13 @@
 =Backported / Fixed=
 
- * Fixed favorites menu bug
- * Fixed sort by ping
- * Backported windows home path
- * Backported qkey load location
- * Backported video modes to be compatible with 1.1 UI
+ * Fixed favorites menu bug (Slacker)
+ * Fixed sort by ping (Amanieu)
+ * Backported windows home path (Slacker)
+ * Backported qkey load location (Mercury)
+ * Backported video modes to be compatible with 1.1 UI (Critux)
 
 =Added features=
 
- * Display black in console correctly
- * Doubled the max limit on cvars and console text
- * Added TJW style and SVN style cURL compatibility layer to client
+ * Display black in console correctly (benmachine)
+ * Doubled the max limit on cvars and console text (Mercury)
+ * Added TJW style and SVN style cURL compatibility layer to client (Mercury)
