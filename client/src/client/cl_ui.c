@@ -417,6 +417,7 @@ static int LAN_CompareServers( int source, int sortKey, int sortDir, int s1, int
 			}
 			break;
 		case SORT_PING:
+		case 4:
 			if (server1->ping < server2->ping) {
 				res = -1;
 			}
