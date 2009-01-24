@@ -17,6 +17,9 @@ ifeq ($(COMPILE_PLATFORM),darwin)
   COMPILE_ARCH=$(shell uname -p | sed -e s/i.86/x86/)
 endif
 
+ifndef USE_SVN
+  USE_SVN=	     0
+endif
 ifndef BUILD_STANDALONE
   BUILD_STANDALONE = 1
 endif
@@ -160,23 +163,25 @@ ifeq ($(shell which pkg-config > /dev/null; echo $$?),0)
 endif
 
 # version info
-VERSION=1.1.0
+VERSION=SVN
 
-USE_SVN=
-ifeq ($(wildcard .svn),.svn)
-  SVN_REV=$(shell LANG=C svnversion .)
-  ifneq ($(SVN_REV),)
-    VERSION:=$(VERSION)_SVN$(SVN_REV)
-    USE_SVN=1
+# SVN addition to PRODUCT_VERSION
+ifeq ($(USE_SVN),1)
+  ifeq ($(wildcard .svn),.svn)
+    SVN_REV=$(shell LANG=C svnversion .)
+    ifneq ($(SVN_REV),)
+      VERSION:=$(VERSION)_SVN$(SVN_REV)
+    endif
+  else
+  ifeq ($(wildcard .git/svn/.metadata),.git/svn/.metadata)
+    SVN_REV=$(shell LANG=C git-svn info | awk '$$1 == "Revision:" {print $$2; exit 0}')
+    ifneq ($(SVN_REV),)
+      VERSION:=$(VERSION)_SVN$(SVN_REV)
+    endif
   endif
-else
-ifeq ($(wildcard .git/svn/.metadata),.git/svn/.metadata)
-  SVN_REV=$(shell LANG=C git-svn info | awk '$$1 == "Revision:" {print $$2; exit 0}')
-  ifneq ($(SVN_REV),)
-    VERSION:=$(VERSION)_SVN$(SVN_REV)
   endif
 endif
-endif
+
 
 
 #############################################################################
