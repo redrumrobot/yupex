@@ -9,5 +9,19 @@
 =Added features=
 
  * Display black in console correctly (benmachine)
- * Doubled the max limit on cvars and console text (Mercury)
- * Added TJW style and SVN style cURL compatibility layer to client (Mercury)
+ * Double the max limit on cvars and console text (Mercury)
+ * TJW style and SVN style cURL compatibility layer to client (Mercury)
+ * vstr helpers (wireddd/Amanieu)
+  * *if* - _comparison between cvars_
+   * if (variable1) (operator) (variable2) (variablethen) (variableelse)
+   * valid operators are = != < > >= <=
+  * *math* - _addition, subtraction, multiplication, and division between cvars_
+   * math (variableToSet) (variable1) (operator) (variable2)
+   * math (variableToSet) (operator) (variable1)
+   * math (variableToSet) ++
+   * math (variableToSet) --
+   * valid operators are + - {{{*}}} /
+  * *strcmp* - _compare two strings_
+   * strcmp (string1) (operator) (string2) (cmdthen) (cmdelse)
+  * *concat* - _combine two cvars_
+   * concat (variableToSet) (variable1) (variable2)
