@@ -10,7 +10,7 @@
 
  * Display black in console correctly (benmachine)
  * Double the max limit on cvars and console text (Mercury)
- * TJW style and SVN style cURL compatibility layer to client (Mercury)
+ * TJW style and SVN style cURL compatibility layer (Mercury)
  * vstr helpers (wireddd/Amanieu)
   * *if* - _comparison between cvars_
    * if (variable1) (operator) (variable2) (variablethen) (variableelse)
