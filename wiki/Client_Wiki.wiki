@@ -1,0 +1,13 @@
+=Backported / Fixed=
+
+ # Fixed favorites menu bug
+ # Fixed sort by ping
+ # Backported windows home path
+ # Backported qkey load location
+ # Backported video modes to be compatible with 1.1 UI
+
+=Added features=
+
+ # Display black in console correctly
+ # Doubled the max limit on cvars and console text
+ # Added TJW style and SVN style cURL compatibility layer to client
