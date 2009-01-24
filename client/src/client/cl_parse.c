@@ -436,16 +436,31 @@ CL_ParseServerInfo
 */
 static void CL_ParseServerInfo(void)
 {
-	const char *serverInfo;
+	const char	*serverInfo;
+	const char	*systemInfo;
 
-	serverInfo = cl.gameState.stringData
-		+ cl.gameState.stringOffsets[ CS_SERVERINFO ];
+	serverInfo = cl.gameState.stringData + cl.gameState.stringOffsets[ CS_SERVERINFO ];
+	systemInfo = cl.gameState.stringData + cl.gameState.stringOffsets[ CS_SYSTEMINFO ];
 
-	clc.sv_allowDownload = atoi(Info_ValueForKey(serverInfo,
-		"sv_allowDownload"));
-	Q_strncpyz(clc.sv_dlURL,
-		Info_ValueForKey(serverInfo, "sv_dlURL"),
-		sizeof(clc.sv_dlURL));
+	if ( !Q_stricmp( Info_ValueForKey(serverInfo, "sv_allowDownload"), "" ) )
+	{
+		clc.sv_allowDownload = atoi( Info_ValueForKey(systemInfo, "sv_allowDownload") );
+	}
+	else
+	{
+		clc.sv_allowDownload = atoi( Info_ValueForKey(serverInfo, "sv_allowDownload") );
+	}
+
+	if ( !Q_stricmp( Info_ValueForKey(serverInfo, "sv_dlURL"), "" ) )
+	{
+		Q_strncpyz(clc.sv_dlURL, Info_ValueForKey(systemInfo, "sv_wwwBaseURL"), sizeof(clc.sv_dlURL));
+		Com_Printf (S_COLOR_YELLOW "Using TJW style cURL.\n");
+	}	
+	else
+	{
+		Q_strncpyz(clc.sv_dlURL, Info_ValueForKey(serverInfo, "sv_dlURL"), sizeof(clc.sv_dlURL));
+		Com_Printf (S_COLOR_YELLOW "Using SVN style cURL.\n");
+	}
 }
 
 /*
