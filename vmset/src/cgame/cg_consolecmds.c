@@ -189,6 +189,49 @@ static void CG_TellAttacker_f( void )
   trap_SendClientCommand( command );
 }
 
+static void CG_Calc_f( void )
+{
+
+  if( !strcmp( CG_Argv( 1 ), "" ) || !strcmp( CG_Argv( 2 ), "" ) || !strcmp( CG_Argv( 3 ), "" ) )
+  {
+  	CG_Printf( "Usage: calc (number) (operator) (number)\nvalid operators: + - * /\n" );
+	return;
+  }
+
+  if( !strcmp( CG_Argv( 2 ), "+" ) )
+  {
+	CG_Printf( va( "%i\n", atoi( CG_Argv( 1 ) ) + atoi( CG_Argv( 3 ) ) ) );
+	return;
+  }
+
+  if( !strcmp( CG_Argv( 2 ), "-" ) )
+  {
+	CG_Printf( va( "%i\n", atoi( CG_Argv( 1 ) ) - atoi( CG_Argv( 3 ) ) ) );
+	return;
+  }
+
+  if( !strcmp( CG_Argv( 2 ), "*" ) )
+  {
+	CG_Printf( va( "%i\n", atoi( CG_Argv( 1 ) ) * atoi( CG_Argv( 3 ) ) ) );
+	return;
+  }
+
+  if( !strcmp( CG_Argv( 2 ), "/" ) )
+  {
+	if( atoi( CG_Argv( 3 ) ) == 0 )
+	{
+		CG_Printf( "Cannot divide by zero!\n" );
+		return;
+	}
+	CG_Printf( va( "%i\n", atoi( CG_Argv( 1 ) ) / atoi( CG_Argv( 3 ) ) ) );
+	return;
+  }
+
+  CG_Printf( "Usage: calc (number) (operator) (number)\nvalid operators: + - * /\n" );
+  return;
+
+}
+
 typedef struct
 {
   char  *cmd;
@@ -220,6 +263,7 @@ static consoleCommand_t commands[ ] =
   { "destroyTestPS", CG_DestroyTestPS_f },
   { "testTS", CG_TestTS_f },
   { "destroyTestTS", CG_DestroyTestTS_f },
+  { "calc", CG_Calc_f },
 };
 
 
