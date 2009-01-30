@@ -35,3 +35,14 @@
   * *r_bloom_darken* - _Control how dark to make the bloom/screen_
   * *r_bloom_sample_size* - _Control how many samples to display_
   {{{*}}} the higher this is the lower your fps will be
+
+ * Console visual controls
+  * *scr_conUseShader* - _Enable/Disable shader use_
+  * *scr_conColorAlpha* - _Control transparency of the console_
+  * *scr_conColorRed* - _Control how much red will be painted on the console background_
+  * *scr_conColorGreen* - _Control how much red will be painted on the console background_
+  * *scr_conColorBlue* - _Control how much green will be painted on the console background_
+  * *scr_conBarColorRed* - _Control how much red will be painted on the console bar_
+  * *scr_conBarColorGreen* - _Control how much red will be painted on the console bar_
+  * *scr_conBarColorBlue* - _Control how much green will be painted on the console bar_
+  * *scr_conBarHeight* - _Control the height of the console bar_
