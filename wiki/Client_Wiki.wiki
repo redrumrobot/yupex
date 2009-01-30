@@ -5,6 +5,7 @@
  * Backported windows home path (Slacker)
  * Backported qkey load location (Mercury)
  * Backported video modes to be compatible with 1.1 UI (Critux)
+ * Backported color escape (Mercury)
 
 =Added features=
 
