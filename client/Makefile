@@ -469,13 +469,13 @@ ifeq ($(PLATFORM),mingw32)
   ifeq ($(USE_LOCAL_HEADERS),1)
     BASE_CFLAGS += -I$(SDLHDIR)/include
     CLIENT_LDFLAGS += $(LIBSDIR)/win32/libSDLmain.a \
-                      $(LIBSDIR)/win32/libSDL.dll.a
+                      $(LIBSDIR)/win32/libSDL.a
   else
     BASE_CFLAGS += $(SDL_CFLAGS)
     CLIENT_LDFLAGS += $(SDL_LIBS)
   endif
 
-
+  CLIENT_LDFLAGS += -ldxguid -ldinput8
 
   BUILD_CLIENT_SMP = 0
 
