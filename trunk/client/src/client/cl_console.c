@@ -58,6 +58,22 @@ console_t	con;
 
 cvar_t		*con_conspeed;
 
+// Console color
+
+cvar_t		*scr_conUseShader;
+
+cvar_t		*scr_conColorAlpha;
+cvar_t		*scr_conColorRed;
+cvar_t		*scr_conColorBlue;
+cvar_t		*scr_conColorGreen;
+
+// Console bar color/height
+cvar_t		*scr_conBarColor;
+cvar_t		*scr_conBarColorRed;
+cvar_t		*scr_conBarColorBlue;
+cvar_t		*scr_conBarColorGreen;
+cvar_t		*scr_conBarHeight;
+
 #define	DEFAULT_CONSOLE_WIDTH	78
 
 vec4_t	console_color = {1.0, 1.0, 1.0, 1.0};
@@ -303,7 +319,22 @@ Con_Init
 void Con_Init (void) {
 	int		i;
 
-	con_conspeed = Cvar_Get ("scr_conspeed", "3", 0);
+	con_conspeed = Cvar_Get ("scr_conspeed", "3", CVAR_ARCHIVE);
+
+	// Console color control
+
+	scr_conUseShader = Cvar_Get ("scr_conUseShader", "0", CVAR_ARCHIVE);
+
+	scr_conColorAlpha = Cvar_Get ("scr_conColorAlpha", "1", CVAR_ARCHIVE);
+	scr_conColorRed = Cvar_Get ("scr_conColorRed", "0", CVAR_ARCHIVE);
+	scr_conColorBlue = Cvar_Get ("scr_conColorBlue", "0", CVAR_ARCHIVE);
+	scr_conColorGreen = Cvar_Get ("scr_conColorGreen", "0", CVAR_ARCHIVE);
+
+	// Console bar color control/height control
+	scr_conBarColorRed = Cvar_Get ("scr_conBarColorRed", "1", CVAR_ARCHIVE);
+	scr_conBarColorBlue = Cvar_Get ("scr_conBarColorBlue", "0", CVAR_ARCHIVE);
+	scr_conBarColorGreen = Cvar_Get ("scr_conBarColorGreen", "0", CVAR_ARCHIVE);
+	scr_conBarHeight = Cvar_Get ("scr_conBarHeight", "2", CVAR_ARCHIVE);
 
 	Field_Clear( &g_consoleField );
 	g_consoleField.widthInChars = g_console_field_width;
@@ -501,14 +532,27 @@ void Con_DrawSolidConsole( float frac ) {
 		y = 0;
 	}
 	else {
-		SCR_DrawPic( 0, 0, SCREEN_WIDTH, y, cls.consoleShader );
+		if( scr_conUseShader->integer )
+		{
+			SCR_DrawPic( 0, 0, SCREEN_WIDTH, y, cls.consoleShader );
+		}
+		else
+		{
+			color[0] = scr_conColorRed->value;
+			color[1] = scr_conColorGreen->value;
+			color[2] = scr_conColorBlue->value;
+			color[3] = scr_conColorAlpha->value;
+		
+	   		SCR_FillRect( 0, 0, SCREEN_WIDTH, y, color );
+		}
 	}
 
-	color[0] = 1;
-	color[1] = 0;
-	color[2] = 0;
+	color[0] = scr_conBarColorRed->value;
+	color[1] = scr_conBarColorGreen->value;
+	color[2] = scr_conBarColorBlue->value;
 	color[3] = 1;
-	SCR_FillRect( 0, y, SCREEN_WIDTH, 2, color );
+	
+	SCR_FillRect( 0, y, SCREEN_WIDTH, scr_conBarHeight->integer, color );
 
 
 	// draw the version number
