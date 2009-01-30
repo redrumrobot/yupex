@@ -945,6 +945,9 @@ const void	*RB_DrawSurfs( const void *data ) {
 	backEnd.refdef = cmd->refdef;
 	backEnd.viewParms = cmd->viewParms;
 
+	//TODO Maybe check for rdf_noworld stuff but q3mme has full 3d ui
+	backEnd.doneSurfaces = qtrue;
+
 	RB_RenderDrawSurfList( cmd->drawSurfs, cmd->numDrawSurfs );
 
 	return (const void *)(cmd + 1);
@@ -1118,6 +1121,9 @@ const void	*RB_SwapBuffers( const void *data ) {
 
 	GLimp_EndFrame();
 
+	backEnd.doneBloom = qfalse;
+	backEnd.doneSurfaces = qfalse;
+
 	backEnd.projection2D = qfalse;
 
 	return (const void *)(cmd + 1);
@@ -1148,6 +1154,8 @@ void RB_ExecuteRenderCommands( const void *data ) {
 			data = RB_SetColor( data );
 			break;
 		case RC_STRETCH_PIC:
+			//Check if it's time for BLOOM!
+			R_BloomScreen();
 			data = RB_StretchPic( data );
 			break;
 		case RC_DRAW_SURFS:
@@ -1157,6 +1165,8 @@ void RB_ExecuteRenderCommands( const void *data ) {
 			data = RB_DrawBuffer( data );
 			break;
 		case RC_SWAP_BUFFERS:
+			//Check if it's time for BLOOM!
+			R_BloomScreen();
 			data = RB_SwapBuffers( data );
 			break;
 		case RC_SCREENSHOT:
