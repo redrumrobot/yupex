@@ -102,10 +102,17 @@ Con_MessageMode_f
 ================
 */
 void Con_MessageMode_f (void) {
+	int i;
 	chat_playerNum = -1;
 	chat_team = qfalse;
 	Field_Clear( &chatField );
 	chatField.widthInChars = 30;
+
+	for( i = 1; i < Cmd_Argc(); i++ )
+	{
+		Com_sprintf( chatField.buffer, MAX_SAY_TEXT, "%s%s ", chatField.buffer, Cmd_Argv( i ) );
+	}
+	chatField.cursor += strlen( chatField.buffer );
 
 	Key_SetCatcher( Key_GetCatcher( ) ^ KEYCATCH_MESSAGE );
 }
@@ -116,10 +123,18 @@ Con_MessageMode2_f
 ================
 */
 void Con_MessageMode2_f (void) {
+	int i;
 	chat_playerNum = -1;
 	chat_team = qtrue;
 	Field_Clear( &chatField );
 	chatField.widthInChars = 25;
+
+	for( i = 1; i < Cmd_Argc(); i++ )
+	{
+		Com_sprintf( chatField.buffer, MAX_SAY_TEXT, "%s%s ", chatField.buffer, Cmd_Argv( i ) );
+	}
+	chatField.cursor += strlen( chatField.buffer );
+
 	Key_SetCatcher( Key_GetCatcher( ) ^ KEYCATCH_MESSAGE );
 }
 
@@ -129,6 +144,7 @@ Con_MessageMode3_f
 ================
 */
 void Con_MessageMode3_f (void) {
+	int i;
 	chat_playerNum = VM_Call( cgvm, CG_CROSSHAIR_PLAYER );
 	if ( chat_playerNum < 0 || chat_playerNum >= MAX_CLIENTS ) {
 		chat_playerNum = -1;
@@ -137,6 +153,13 @@ void Con_MessageMode3_f (void) {
 	chat_team = qfalse;
 	Field_Clear( &chatField );
 	chatField.widthInChars = 30;
+
+	for( i = 1; i < Cmd_Argc(); i++ )
+	{
+		Com_sprintf( chatField.buffer, MAX_SAY_TEXT, "%s%s ", chatField.buffer, Cmd_Argv( i ) );
+	}
+	chatField.cursor += strlen( chatField.buffer );
+
 	Key_SetCatcher( Key_GetCatcher( ) ^ KEYCATCH_MESSAGE );
 }
 
@@ -146,6 +169,7 @@ Con_MessageMode4_f
 ================
 */
 void Con_MessageMode4_f (void) {
+	int i;
 	chat_playerNum = VM_Call( cgvm, CG_LAST_ATTACKER );
 	if ( chat_playerNum < 0 || chat_playerNum >= MAX_CLIENTS ) {
 		chat_playerNum = -1;
@@ -154,6 +178,13 @@ void Con_MessageMode4_f (void) {
 	chat_team = qfalse;
 	Field_Clear( &chatField );
 	chatField.widthInChars = 30;
+
+	for( i = 1; i < Cmd_Argc(); i++ )
+	{
+		Com_sprintf( chatField.buffer, MAX_SAY_TEXT, "%s%s ", chatField.buffer, Cmd_Argv( i ) );
+	}
+	chatField.cursor += strlen( chatField.buffer );
+
 	Key_SetCatcher( Key_GetCatcher( ) ^ KEYCATCH_MESSAGE );
 }
 
