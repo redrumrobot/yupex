@@ -241,7 +241,7 @@ vmCvar_t  cg_projectileNudge;
 
 // Mercury modified/added cvars...
 vmCvar_t  cg_chatBalloon;
-
+vmCvar_t  cg_version;
 
 typedef struct
 {
@@ -358,6 +358,7 @@ static cvarTable_t cvarTable[ ] =
   { &cg_optimizePrediction, "cg_optimizePrediction", "1", CVAR_ARCHIVE },
   { &cg_projectileNudge, "cg_projectileNudge", "1", CVAR_ARCHIVE },
   { &cg_chatBalloon, "cg_chatBalloon", "0", CVAR_ARCHIVE },
+  { &cg_version, "cg_version", "Yupex SVN", CVAR_ROM },
 
 
   // the following variables are created in other parts of the system,
