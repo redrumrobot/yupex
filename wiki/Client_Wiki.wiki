@@ -35,7 +35,7 @@
    * strcmp (string1) (operator) (string2) (cmdthen) (cmdelse)
   * *concat* - _combine two cvars_
    * concat (variableToSet) (variable1) (variable2)
- See the [http://code.google.com/p/yupex/wiki/vstr_examples vstr examples] page to learn how to use vstrs efficiently
+ See the [http://code.google.com/p/yupex/wiki/examples examples] page to learn how to use vstrs efficiently
 
  * Bloom (Harekiet/Mercury)
   * *r_bloom* - _Enable/Disable bloom_
