@@ -19,6 +19,7 @@
  * Display black in console correctly (benmachine)
  * Double the max limit on cvars and console text (Mercury)
  * Double the max command buffer (Mercury/doomagent13)
+ * Message mode argument (benmachine) 
  * TJW style and SVN style cURL compatibility layer (Mercury)
  * vstr helpers (wireddd/Amanieu)
   * *if* - _comparison between cvars_
