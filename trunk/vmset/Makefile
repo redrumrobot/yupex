@@ -21,8 +21,8 @@ else
   COMPILE_ARCH=$(shell uname -m | sed -e s/i.86/x86/)
 endif
 
-BUILD_GAME_SO    = 1
-BUILD_GAME_QVM   = 1
+BUILD_GAME_SO	 = 1
+BUILD_GAME_QVM	 = 1
 
 #############################################################################
 #

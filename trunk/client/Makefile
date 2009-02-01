@@ -17,8 +17,13 @@ ifeq ($(COMPILE_PLATFORM),darwin)
   COMPILE_ARCH=$(shell uname -p | sed -e s/i.86/x86/)
 endif
 
+# version info
+ifndef VERSION
+  VERSION	   = Yupex_SVN
+endif
+
 ifndef USE_SVN
-  USE_SVN=	     0
+  USE_SVN	   = 0
 endif
 ifndef BUILD_STANDALONE
   BUILD_STANDALONE = 1
@@ -161,9 +166,6 @@ ifeq ($(shell which pkg-config > /dev/null; echo $$?),0)
   SDL_CFLAGS=$(shell pkg-config --cflags sdl|sed 's/-Dmain=SDL_main//')
   SDL_LIBS=$(shell pkg-config --libs sdl)
 endif
-
-# version info
-VERSION=SVN
 
 # SVN addition to PRODUCT_VERSION
 ifeq ($(USE_SVN),1)
