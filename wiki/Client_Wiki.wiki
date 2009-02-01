@@ -36,7 +36,7 @@
    * concat (variableToSet) (variable1) (variable2)
  See the [http://code.google.com/p/yupex/wiki/vstr_examples vstr examples] page to learn how to use vstrs efficiently
 
- * Bloom
+ * Bloom (Harekiet/Mercury)
   * *r_bloom* - _Enable/Disable bloom_
   * *r_bloom_alpha* - _Control the transparency of bloom_
   * *r_bloom_intensity* - _Control how much to bloom_
@@ -44,7 +44,7 @@
   * *r_bloom_sample_size* - _Control how many samples to display_
   {{{*}}} the higher this is the lower your fps will be
 
- * Console visual controls
+ * Console visual controls (Mercury)
   * *scr_conUseShader* - _Enable/Disable shader use_
   * *scr_conColorAlpha* - _Control transparency of the console_
   * *scr_conColorRed* - _Control how much red will be painted on the console background_
