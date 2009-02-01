@@ -1,4 +1,15 @@
-=Display health=
+=Chat arguments=
+
+===Bind admin chat===
+
+{{{
+/bind *key* "messagemode /a"
+}}}
+Replace {{{*key*}}} with the key you want to bind it to.
+
+=Vstr=
+
+===Display health===
 
 _This requires both the Yupex client and the Yupex VM update_
 {{{
