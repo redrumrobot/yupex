@@ -27,9 +27,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 // q_shared.h -- included first by ALL program modules.
 // A user mod should never modify this file
 
+
+#define PRODUCT_NAME	          "Yupex"
 #define CLIENT_WINDOW_TITLE       "Tremulous"
 #define CLIENT_WINDOW_MIN_TITLE   "Tremulous"
-#define Q3_VERSION                 PRODUCT_VERSION
+#define Q3_VERSION                PRODUCT_NAME " " PRODUCT_VERSION " "
 
 #define MAX_TEAMNAME 32
 
