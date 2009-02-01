@@ -19,7 +19,7 @@ endif
 
 # version info
 ifndef VERSION
-  VERSION	   = Yupex_SVN
+  VERSION	   = SVN
 endif
 
 ifndef USE_SVN
