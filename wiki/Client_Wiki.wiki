@@ -1,3 +1,10 @@
+=How to install=
+ # Download the client binary that fits your operating system
+ # If you are using *Windows*, your old client should be located at C:\Program Files\Tremulous
+ # If you are using *Linux*, your old client should be located at /usr/local/games/tremulous
+ # Once you have located your old client, replace/overwrite it with the client you have downloaded
+ # Start tremulous and take advantage of Yupex's feature!
+
 =Backported / Fixed=
 
  * Fixed favorites menu bug (Slacker)
