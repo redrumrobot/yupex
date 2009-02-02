@@ -14,6 +14,12 @@
  # Locate the file "*backup*" and rename it to "*vms-1.1.0.pk3*".
  # Start tremulous, join a server, and your stock VM set should be loaded.
 
+=How to check version=
+ # Start Tremulous
+ # Enter a server, doesn't matter which one it is
+ # Type /cg_version, compare the set text with the one on the Home page
+ # If the text is lesser than the one on the Home page, please follow the install instructions again to upgrade
+
 =Added features=
 
  * Cvars
