@@ -5,6 +5,12 @@
  # Once you have located your old client, replace/overwrite it with the client you have downloaded
  # Start tremulous and take advantage of Yupex's feature!
 
+=How to check version=
+ # Press the ~ key on your keyboard
+ # Look at the lower right hand corner
+ # Compare the version printed with the one on the Home page
+ # If the text printed is lesser than the one on the Home page, please follow the install instructions again to upgrade
+
 =Backported / Fixed=
 
  * Fixed favorites menu bug (Slacker)
