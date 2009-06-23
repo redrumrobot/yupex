@@ -232,6 +232,12 @@ static void CG_Calc_f( void )
 
 }
 
+static void CG_CCP_f( void )
+{
+	CG_CenterPrint( CG_Argv( 1 ), SCREEN_HEIGHT * 0.30, BIGCHAR_WIDTH );
+	return;
+}
+
 typedef struct
 {
   char  *cmd;
@@ -264,6 +270,7 @@ static consoleCommand_t commands[ ] =
   { "testTS", CG_TestTS_f },
   { "destroyTestTS", CG_DestroyTestTS_f },
   { "calc", CG_Calc_f },
+  { "ccp", CG_CCP_f }
 };
 
 
