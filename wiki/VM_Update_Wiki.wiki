@@ -24,13 +24,23 @@
 
  * Cvars
   # *cg_chatBalloon* _0|1_ - Display a chat balloon over the head of a player that is typing
-  # *user_hp* - Displays the current health out of the max health
-  # *user_teamname* - Displays the team you are on
+  # *user_hp* - Displays the current health
+  # *user_maxhp* - Displays the max health
+  # *user_class* - Displays the current class selection (in integers)
+  # *user_classname* - Displays the class selection
+  # *user_weapon* - Displays the current weapon selection (in integers)
+  # *user_weaponname* - Displays the current weapon selection
+  # *user_team* - Displays the current team selection (in integers)
+  # *user_teamname* - Displays the current team selection
   # *user_stage* - Displays your team's stage
   # *user_credits* - Displays your current credits/evos
   # *user_score* - Displays your score
-  # *user_attackername* - Displays the name of the last person that caused damage to you
-  # *user_crosshairrname* - Displays the name of the player in your crosshairs (teammate limited)
+  # *user_attacker* - Displays the slot number of the last player that caused damage to you
+  # *user_attackername* - Displays the name of the last player that caused damage to you
+  # *user_crosshair* - Displays the slot number of the player in your crosshairs (teammate limited)
+  # *user_crosshairname* - Displays the name of the player in your crosshairs (teammate limited)
 
  * Other
   # Smooth mass driver zooming
+  # *calc* - A simple math calculator
+  # *ccp* - Client center print
