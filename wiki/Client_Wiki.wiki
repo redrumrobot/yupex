@@ -39,6 +39,7 @@
    * valid operators are + - {{{*}}} /
   * *strcmp* - _compare two strings_
    * strcmp (string1) (operator) (string2) (cmdthen) (cmdelse)
+   * valid operators are = !=
   * *concat* - _combine two cvars_
    * concat (variableToSet) (variable1) (variable2)
 
