@@ -46,6 +46,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #define	RETRANSMIT_TIMEOUT	3000	// time between connection packet retransmits
 
+typedef struct {
+	int			time;
+	int			clientNum;
+} voipClient_t;
+
 // snapshots are a view of the server at a given time
 typedef struct {
 	qboolean		valid;			// cleared if delta parsing was invalid
@@ -344,6 +349,9 @@ typedef struct {
 	qhandle_t	charSetShader;
 	qhandle_t	whiteShader;
 	qhandle_t	consoleShader;
+	
+	voipClient_t	voipClient;
+	
 } clientStatic_t;
 
 extern	clientStatic_t		cls;
@@ -417,6 +425,7 @@ extern	cvar_t	*cl_voipSendTarget;
 extern	cvar_t	*cl_voipGainDuringCapture;
 extern	cvar_t	*cl_voipCaptureMult;
 extern	cvar_t	*cl_voipShowMeter;
+extern	cvar_t	*cl_voipShowSender;
 extern	cvar_t	*cl_voip;
 #endif
 

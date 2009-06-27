@@ -669,6 +669,12 @@ qboolean CL_ShouldIgnoreVoipSender(int sender)
 	return qfalse;
 }
 
+static void CL_AddClientVoip( int client )
+{
+	cls.voipClient.clientNum = client;
+	cls.voipClient.time = cls.realtime + 500;
+}
+
 /*
 =====================
 CL_ParseVoip
@@ -729,7 +735,10 @@ void CL_ParseVoip ( msg_t *msg ) {
 	// !!! FIXME: make sure data is narrowband? Does decoder handle this?
 
 	Com_DPrintf("VoIP: packet accepted!\n");
-
+	
+	// Add client to voip display
+	CL_AddClientVoip( sender );
+	
 	// This is a new "generation" ... a new recording started, reset the bits.
 	if (generation != clc.voipIncomingGeneration[sender]) {
 		Com_DPrintf("VoIP: new generation %d!\n", generation);
@@ -806,6 +815,7 @@ void CL_ParseVoip ( msg_t *msg ) {
 
 	clc.voipIncomingSequence[sender] = sequence + frames;
 }
+
 #endif
 
 
