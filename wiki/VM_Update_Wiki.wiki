@@ -24,6 +24,7 @@
 
  * Cvars
   # *cg_chatBalloon* _0|1_ - Display a chat balloon over the head of a player that is typing
+  # *user_spectating* - Displays name of the player you are spectating( if any )
   # *user_hp* - Displays the current health
   # *user_maxhp* - Displays the max health
   # *user_class* - Displays the current class selection (in integers)
@@ -39,6 +40,7 @@
   # *user_attackername* - Displays the name of the last player that caused damage to you
   # *user_crosshair* - Displays the slot number of the player in your crosshairs (teammate limited)
   # *user_crosshairname* - Displays the name of the player in your crosshairs (teammate limited)
+  # *cg_placementFix* - Enable/Disable the visual fix for model not matching bbox
 
  * Other
   # Smooth mass driver zooming
