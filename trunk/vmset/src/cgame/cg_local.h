@@ -1508,7 +1508,7 @@ extern  vmCvar_t    cg_projectileNudge;
 
 // Mercury modified/added cvars...
 extern  vmCvar_t    cg_chatBalloon;
-
+extern  vmCvar_t    cg_placementFix;
 
 //
 // cg_main.c

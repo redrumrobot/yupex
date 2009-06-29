@@ -621,14 +621,14 @@ static void CG_PositionAndOrientateBuildable( const vec3_t angles, const vec3_t 
 
   VectorMA( inOrigin, -TRACE_DEPTH, normal, end );
   VectorMA( inOrigin, 1.0f, normal, start );
-  CG_CapTrace( &tr, start, mins, maxs, end, skipNumber, MASK_PLAYERSOLID );
-
-  if( tr.fraction == 1.0f )
+  if( cg_placementFix.integer )
   {
-    //erm we missed completely - try again with a box trace
-    CG_Trace( &tr, start, mins, maxs, end, skipNumber, MASK_PLAYERSOLID );
+  	CG_Trace( &tr, start, mins, maxs, end, skipNumber, MASK_PLAYERSOLID );
   }
-
+  else
+  {
+  	CG_CapTrace( &tr, start, mins, maxs, end, skipNumber, MASK_PLAYERSOLID );
+  }
   VectorMA( inOrigin, tr.fraction * -TRACE_DEPTH, normal, outOrigin );
 }
 

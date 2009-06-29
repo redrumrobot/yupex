@@ -242,6 +242,7 @@ vmCvar_t  cg_projectileNudge;
 // Mercury modified/added cvars...
 vmCvar_t  cg_chatBalloon;
 vmCvar_t  cg_version;
+vmCvar_t  cg_placementFix;
 
 typedef struct
 {
@@ -359,7 +360,7 @@ static cvarTable_t cvarTable[ ] =
   { &cg_projectileNudge, "cg_projectileNudge", "1", CVAR_ARCHIVE },
   { &cg_chatBalloon, "cg_chatBalloon", "0", CVAR_ARCHIVE },
   { &cg_version, "cg_version", "Yupex SVN", CVAR_ROM },
-
+  { &cg_placementFix, "cg_placementFix", "0", CVAR_ARCHIVE },
 
   // the following variables are created in other parts of the system,
   // but we also reference them here
@@ -464,6 +465,7 @@ static void CG_SetPVars( void )
   // Clear these...since they don't clear themselves
   trap_Cvar_Set( "user_attackername", "" );
   trap_Cvar_Set( "user_crosshairname", "" );
+  trap_Cvar_Set( "user_spectating", "" );
   
   trap_Cvar_Set( "user_hp", va( "%d", ps->stats[ STAT_HEALTH ] ) );
   trap_Cvar_Set( "user_maxhp", va( "%d", ps->stats[ STAT_MAX_HEALTH ] ) );
@@ -491,10 +493,19 @@ static void CG_SetPVars( void )
   trap_Cvar_Set( "user_score", va( "%d", ps->persistant[ PERS_SCORE ] ) );
   trap_Cvar_Set( "user_attacker", va( "%d", CG_LastAttacker( ) ) );
   if ( CG_LastAttacker( ) != -1 )
-    trap_Cvar_Set( "user_attackername", cgs.clientinfo[ CG_LastAttacker( ) ].name );
+  {
+  	trap_Cvar_Set( "user_attackername", cgs.clientinfo[ CG_LastAttacker( ) ].name );
+  }
   trap_Cvar_Set( "user_crosshair", va( "%d", CG_CrosshairPlayer( ) ) );
   if ( CG_CrosshairPlayer( ) != -1 )
-    trap_Cvar_Set( "user_crosshairname", cgs.clientinfo[ CG_CrosshairPlayer( ) ].name );
+  {
+  	trap_Cvar_Set( "user_crosshairname", cgs.clientinfo[ CG_CrosshairPlayer( ) ].name );
+  }
+  if( cg.snap->ps.pm_flags & PMF_FOLLOW )
+  {
+  	trap_Cvar_Set( "user_spectating", cgs.clientinfo[ ps->clientNum ].name );
+  }
+  
 }
 
 /*
