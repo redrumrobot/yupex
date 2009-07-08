@@ -3,7 +3,7 @@
  # If you are using the stock/TJW backport client then select "*stock-update-vms.pk3*" from the download tab.
  # If you are using a client that isn't compatible with the 1.1 game QVM, like Tremfusion, or Yupex, select "*update-vms-pk3*" from the download tab.
  # Locate your base folder, it should be in the same directory as your client binary.
- # Locate the file "*vms-1.1.0.pk3*" and rename it to "*backup*".
+ # Locate the file "*vms-1.1.0.pk3*" and rename it to "*backup*". If you are upgrading, this is not necessary.
  # Place the Yupex VM update ("*update-vms.pk3*" / "*stock-update-vms.pk3*") in your base folder.
  # Start tremulous, join a server, and you should be ready to use the Yupex VM update!
 
