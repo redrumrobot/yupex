@@ -173,7 +173,7 @@ static void GLimp_DetectAvailableModes(void)
 
 	if( modes == (SDL_Rect **)-1 )
 	{
-		ri.Printf( PRINT_ALL, "Display supports any resolution\n" );
+		ri.Printf( PRINT_DEVELOPER, "Display supports any resolution\n" );
 		return; // can set any resolution
 	}
 
@@ -195,7 +195,7 @@ static void GLimp_DetectAvailableModes(void)
 	if( *buf )
 	{
 		buf[ strlen( buf ) - 1 ] = 0;
-		ri.Printf( PRINT_ALL, "Available modes: '%s'\n", buf );
+		ri.Printf( PRINT_DEVELOPER, "Available modes: '%s'\n", buf );
 		ri.Cvar_Set( "r_availableModes", buf );
 	}
 }
@@ -215,7 +215,7 @@ static int GLimp_SetMode( int mode, qboolean fullscreen )
 	SDL_Surface *vidscreen = NULL;
 	Uint32 flags = SDL_OPENGL;
 
-	ri.Printf( PRINT_ALL, "Initializing OpenGL display\n");
+	ri.Printf( PRINT_DEVELOPER, "Initializing OpenGL display\n");
 
 #if !SDL_VERSION_ATLEAST(1, 2, 10)
   // 1.2.10 is needed to get the desktop resolution
@@ -242,11 +242,11 @@ static int GLimp_SetMode( int mode, qboolean fullscreen )
 		// the display's native aspect ratio
 		glConfig.displayAspect = (float)videoInfo->current_w / (float)videoInfo->current_h;
 
-		ri.Printf( PRINT_ALL, "Estimated display aspect: %.3f\n", glConfig.displayAspect );
+		ri.Printf( PRINT_DEVELOPER, "Estimated display aspect: %.3f\n", glConfig.displayAspect );
 	}
 #endif
 
-	ri.Printf (PRINT_ALL, "...setting mode %d:", mode );
+	ri.Printf (PRINT_DEVELOPER, "...setting mode %d:", mode );
 
 	if ( !R_GetModeInfo( &glConfig.vidWidth, &glConfig.vidHeight, &glConfig.windowAspect, mode ) )
 	{
@@ -399,7 +399,7 @@ static int GLimp_SetMode( int mode, qboolean fullscreen )
 
 		opengl_context = GLimp_GetCurrentContext();
 
-		ri.Printf( PRINT_ALL, "Using %d/%d/%d Color bits, %d depth, %d stencil display.\n",
+		ri.Printf( PRINT_DEVELOPER, "Using %d/%d/%d Color bits, %d depth, %d stencil display.\n",
 				sdlcolorbits, sdlcolorbits, sdlcolorbits, tdepthbits, tstencilbits);
 
 		glConfig.colorBits = tcolorbits;
@@ -419,7 +419,7 @@ static int GLimp_SetMode( int mode, qboolean fullscreen )
 	screen = vidscreen;
 
 	glstring = (char *) qglGetString (GL_RENDERER);
-	ri.Printf( PRINT_ALL, "GL_RENDERER: %s\n", glstring );
+	ri.Printf( PRINT_DEVELOPER, "GL_RENDERER: %s\n", glstring );
 
 	return RSERR_OK;
 }
@@ -497,7 +497,7 @@ static void GLimp_InitExtensions( void )
 		return;
 	}
 
-	ri.Printf( PRINT_ALL, "Initializing OpenGL extensions\n" );
+	ri.Printf( PRINT_DEVELOPER, "Initializing OpenGL extensions\n" );
 
 	glConfig.textureCompression = TC_NONE;
 
@@ -528,16 +528,16 @@ static void GLimp_InitExtensions( void )
 			if ( r_ext_compressed_textures->value )
 			{
 				glConfig.textureCompression = TC_S3TC;
-				ri.Printf( PRINT_ALL, "...using GL_S3_s3tc\n" );
+				ri.Printf( PRINT_DEVELOPER, "...using GL_S3_s3tc\n" );
 			}
 			else
 			{
-				ri.Printf( PRINT_ALL, "...ignoring GL_S3_s3tc\n" );
+				ri.Printf( PRINT_DEVELOPER, "...ignoring GL_S3_s3tc\n" );
 			}
 		}
 		else
 		{
-			ri.Printf( PRINT_ALL, "...GL_S3_s3tc not found\n" );
+			ri.Printf( PRINT_DEVELOPER, "...GL_S3_s3tc not found\n" );
 		}
 	}
 
@@ -549,17 +549,17 @@ static void GLimp_InitExtensions( void )
 		if ( r_ext_texture_env_add->integer )
 		{
 			glConfig.textureEnvAddAvailable = qtrue;
-			ri.Printf( PRINT_ALL, "...using GL_EXT_texture_env_add\n" );
+			ri.Printf( PRINT_DEVELOPER, "...using GL_EXT_texture_env_add\n" );
 		}
 		else
 		{
 			glConfig.textureEnvAddAvailable = qfalse;
-			ri.Printf( PRINT_ALL, "...ignoring GL_EXT_texture_env_add\n" );
+			ri.Printf( PRINT_DEVELOPER, "...ignoring GL_EXT_texture_env_add\n" );
 		}
 	}
 	else
 	{
-		ri.Printf( PRINT_ALL, "...GL_EXT_texture_env_add not found\n" );
+		ri.Printf( PRINT_DEVELOPER, "...GL_EXT_texture_env_add not found\n" );
 	}
 
 	// GL_ARB_multitexture
@@ -581,25 +581,25 @@ static void GLimp_InitExtensions( void )
 				glConfig.numTextureUnits = (int) glint;
 				if ( glConfig.numTextureUnits > 1 )
 				{
-					ri.Printf( PRINT_ALL, "...using GL_ARB_multitexture\n" );
+					ri.Printf( PRINT_DEVELOPER, "...using GL_ARB_multitexture\n" );
 				}
 				else
 				{
 					qglMultiTexCoord2fARB = NULL;
 					qglActiveTextureARB = NULL;
 					qglClientActiveTextureARB = NULL;
-					ri.Printf( PRINT_ALL, "...not using GL_ARB_multitexture, < 2 texture units\n" );
+					ri.Printf( PRINT_DEVELOPER, "...not using GL_ARB_multitexture, < 2 texture units\n" );
 				}
 			}
 		}
 		else
 		{
-			ri.Printf( PRINT_ALL, "...ignoring GL_ARB_multitexture\n" );
+			ri.Printf( PRINT_DEVELOPER, "...ignoring GL_ARB_multitexture\n" );
 		}
 	}
 	else
 	{
-		ri.Printf( PRINT_ALL, "...GL_ARB_multitexture not found\n" );
+		ri.Printf( PRINT_DEVELOPER, "...GL_ARB_multitexture not found\n" );
 	}
 
 	// GL_EXT_compiled_vertex_array
@@ -607,7 +607,7 @@ static void GLimp_InitExtensions( void )
 	{
 		if ( r_ext_compiled_vertex_array->value )
 		{
-			ri.Printf( PRINT_ALL, "...using GL_EXT_compiled_vertex_array\n" );
+			ri.Printf( PRINT_DEVELOPER, "...using GL_EXT_compiled_vertex_array\n" );
 			qglLockArraysEXT = ( void ( APIENTRY * )( GLint, GLint ) ) SDL_GL_GetProcAddress( "glLockArraysEXT" );
 			qglUnlockArraysEXT = ( void ( APIENTRY * )( void ) ) SDL_GL_GetProcAddress( "glUnlockArraysEXT" );
 			if (!qglLockArraysEXT || !qglUnlockArraysEXT)
@@ -617,12 +617,12 @@ static void GLimp_InitExtensions( void )
 		}
 		else
 		{
-			ri.Printf( PRINT_ALL, "...ignoring GL_EXT_compiled_vertex_array\n" );
+			ri.Printf( PRINT_DEVELOPER, "...ignoring GL_EXT_compiled_vertex_array\n" );
 		}
 	}
 	else
 	{
-		ri.Printf( PRINT_ALL, "...GL_EXT_compiled_vertex_array not found\n" );
+		ri.Printf( PRINT_DEVELOPER, "...GL_EXT_compiled_vertex_array not found\n" );
 	}
 
 	glConfig.textureFilterAnisotropic = qfalse;
@@ -631,23 +631,23 @@ static void GLimp_InitExtensions( void )
 		if ( r_ext_texture_filter_anisotropic->integer ) {
 			qglGetIntegerv( GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, (GLint *)&glConfig.maxAnisotropy );
 			if ( glConfig.maxAnisotropy <= 0 ) {
-				ri.Printf( PRINT_ALL, "...GL_EXT_texture_filter_anisotropic not properly supported!\n" );
+				ri.Printf( PRINT_DEVELOPER, "...GL_EXT_texture_filter_anisotropic not properly supported!\n" );
 				glConfig.maxAnisotropy = 0;
 			}
 			else
 			{
-				ri.Printf( PRINT_ALL, "...using GL_EXT_texture_filter_anisotropic (max: %i)\n", glConfig.maxAnisotropy );
+				ri.Printf( PRINT_DEVELOPER, "...using GL_EXT_texture_filter_anisotropic (max: %i)\n", glConfig.maxAnisotropy );
 				glConfig.textureFilterAnisotropic = qtrue;
 			}
 		}
 		else
 		{
-			ri.Printf( PRINT_ALL, "...ignoring GL_EXT_texture_filter_anisotropic\n" );
+			ri.Printf( PRINT_DEVELOPER, "...ignoring GL_EXT_texture_filter_anisotropic\n" );
 		}
 	}
 	else
 	{
-		ri.Printf( PRINT_ALL, "...GL_EXT_texture_filter_anisotropic not found\n" );
+		ri.Printf( PRINT_DEVELOPER, "...GL_EXT_texture_filter_anisotropic not found\n" );
 	}
 }
 
