@@ -62,3 +62,7 @@
   * *scr_conBarColorBlue* - _Control how much green will be painted on the console bar_
   * *scr_conBarHeight* - _Control the height of the console bar_
   {{{*}}} all color cvars are on a 0 to 1 scale, meaning 1 is full color, 0 is no color, and 0.5 is half
+
+ * Reduce map change spam (Amanieu)
+ * VOIP client speaking display (Mercury)
+  * *cl_voipShowSender* - _Enable/Disable the client speaking display_
